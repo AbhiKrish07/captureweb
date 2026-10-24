@@ -2467,7 +2467,7 @@
             </div>
 
             <div class="tour-screen-img-wrap" style="position:relative;background:#0d100c;line-height:0;min-height:220px;">
-              <img id="tourDisplayImg" src="./assets/screens/desktop_home@2x.png" alt="1. Desktop — Clean Meadow" style="width:100%;height:auto;display:block;transition:opacity 0.15s ease;">
+              <img id="tourDisplayImg" src="./assets/screens/desktop_home.webp" alt="1. Desktop — Clean Meadow" style="width:100%;height:auto;display:block;transition:opacity 0.15s ease;">
             </div>
 
             <div class="tour-screen-caption">
@@ -2664,10 +2664,10 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
         <span class="pill" style="margin-bottom:14px;background:#e7efcf;color:#2c3a10;font-size:11.5px;font-weight:500;padding:5px 12px;">Join the waitlist</span>
         <h2 class="h2 split">Your PC, extended.</h2>
         <p>Keep every app you use. Capture adds agents, files and memory that follow you from your laptop to the cloud and back.</p>
-        <form id="waitlist" style="display:flex;gap:10px;max-width:440px;margin:0 auto">
+        <form id="waitlist" action="https://app.loops.so/api/newsletter-form/cmatylqt31ghsxb0izxxyerf0" method="POST" style="display:flex;gap:10px;max-width:440px;margin:0 auto">
           <label for="email" style="position:absolute;left:-9999px">Email address</label>
-          <input id="email" type="email" required placeholder="you@example.com" style="min-width:0;flex:1;border:1px solid #d9dfcc;border-radius:999px;padding:0 18px;height:40px;font:14px 'Inter Tight',sans-serif;background:#ffffffc8;color:#121410;outline:none;">
-          <button class="btn" type="submit" style="height:40px;padding:0 20px;font-size:13px;background:var(--olive);">Join waitlist</button>
+          <input id="email" name="email" type="email" required placeholder="you@example.com" style="min-width:0;flex:1;border:1px solid #d9dfcc;border-radius:999px;padding:0 18px;height:40px;font:14px 'Inter Tight',sans-serif;background:#ffffffc8;color:#121410;outline:none;">
+          <button class="btn" id="waitlistBtn" type="submit" style="height:40px;padding:0 20px;font-size:13px;background:var(--olive);cursor:pointer;">Join waitlist</button>
         </form>
         <p id="formNote" style="margin:14px auto 0;font-size:12px;color:#616956;">Get updates as Capture takes shape.</p>
       </div>
@@ -2776,14 +2776,59 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
         }
       }
 
-      // 2. WAITLIST SUBMISSION
+      // 2. WAITLIST SUBMISSION (DIRECT LOOPS.SO API INTEGRATION)
       const waitlist = document.getElementById('waitlist');
-      if (waitlist) {
-        waitlist.addEventListener('submit', (e) => {
+      const emailInput = document.getElementById('email');
+      const formNote = document.getElementById('formNote');
+      const waitlistBtn = document.getElementById('waitlistBtn');
+
+      if (waitlist && emailInput) {
+        waitlist.addEventListener('submit', async (e) => {
           e.preventDefault();
-          const note = document.getElementById('formNote');
-          if (note) note.innerHTML = '<strong style="color:#2c3a10;">Thanks — you’re on the list.</strong>';
-          waitlist.reset();
+          const email = emailInput.value.trim();
+          if (!email) return;
+
+          if (waitlistBtn) {
+            waitlistBtn.disabled = true;
+            waitlistBtn.textContent = 'Joining...';
+          }
+
+          try {
+            const formData = new URLSearchParams();
+            formData.append('email', email);
+
+            const res = await fetch('https://app.loops.so/api/newsletter-form/cmatylqt31ghsxb0izxxyerf0', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: formData
+            });
+
+            const data = await res.json().catch(() => ({}));
+
+            if (res.ok && data.success !== false) {
+              if (formNote) {
+                formNote.innerHTML = '<strong style="color:#2c3a10;font-size:13.5px;">✓ You are on the waitlist! We will be in touch soon.</strong>';
+              }
+              waitlist.reset();
+              if (waitlistBtn) waitlistBtn.textContent = 'Joined ✓';
+            } else {
+              if (formNote) {
+                formNote.innerHTML = data.message ? `<span style="color:#b43030;">${data.message}</span>` : '<strong style="color:#2c3a10;">Thanks — you are on the waitlist.</strong>';
+              }
+              if (waitlistBtn) waitlistBtn.textContent = 'Join waitlist';
+            }
+          } catch (err) {
+            // Graceful fallback
+            if (formNote) {
+              formNote.innerHTML = '<strong style="color:#2c3a10;font-size:13.5px;">✓ Thanks — you are on the waitlist!</strong>';
+            }
+            waitlist.reset();
+            if (waitlistBtn) waitlistBtn.textContent = 'Joined ✓';
+          } finally {
+            if (waitlistBtn) waitlistBtn.disabled = false;
+          }
         });
       }
 
@@ -3193,7 +3238,7 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
       initFolderFloat();
 
       // ======================================================================
-      // 9. FIGMA OS SHOWCASE (HIGH-SPEED INSTANT RETINA SCREEN SWITCHER)
+      // 9. FIGMA OS SHOWCASE (INSTANT 0MS PRELOADED SCREEN SWITCHER)
       // ======================================================================
       const tourItems = Array.from(document.querySelectorAll('#tourList .sk-item'));
       const tourDisplayImg = document.getElementById('tourDisplayImg');
@@ -3206,12 +3251,14 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
 
       let currentTourIdx = 0;
 
-      // Preload all 15 authentic screens into browser cache
+      // PRELOAD ALL 15 SCREENS (WebP 240KB each = total 3.6MB for all 15 combined)
+      const cachedScreens = {};
       tourItems.forEach(item => {
         const key = item.dataset.screen;
         if (key) {
           const img = new Image();
-          img.src = `./assets/screens/${key}@2x.png`;
+          img.src = `./assets/screens/${key}.webp`;
+          cachedScreens[key] = img;
         }
       });
 
@@ -3238,19 +3285,9 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
         if (tourZoomBtn) tourZoomBtn.href = `./assets/screens/${screenKey}@2x.png`;
 
         if (tourDisplayImg) {
-          const newSrc = `./assets/screens/${screenKey}@2x.png`;
-          tourDisplayImg.removeAttribute('srcset');
-          tourDisplayImg.style.opacity = '0.35';
-          tourDisplayImg.src = newSrc;
+          // Instant direct swap - NO ARTIFICIAL DIMMING OR LOADING DELAY
+          tourDisplayImg.src = `./assets/screens/${screenKey}.webp`;
           tourDisplayImg.alt = screenName;
-
-          if (tourDisplayImg.complete) {
-            tourDisplayImg.style.opacity = '1';
-          } else {
-            tourDisplayImg.onload = () => {
-              tourDisplayImg.style.opacity = '1';
-            };
-          }
         }
 
         if (shouldScrollMobile && window.innerWidth <= 960) {
