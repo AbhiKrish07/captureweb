@@ -1,0 +1,28 @@
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.log
+
+# Large local design files (exceeds GitHub 100MB limit)
+Untitled (1).pdf
+*.avi
+
+# Local scratch & generation scripts
+generate_*.py
+range_server.py
+
+# Reference source clones (not used by live site)
+react-bits-main/
+Skills AI/
+claude-motion-design-main/
+motion-design-skill-main/
+motion-ui-design-master/
+GSAP-master/
+lenis-main/
+vanta-master/
+node_modules/
+.vercel/
+assets/pdf_screens/
+assets/capture_desktop_h264.mp4
