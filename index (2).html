@@ -192,7 +192,7 @@
 
     .hero .nav {
       position: relative;
-      z-index: 30;
+      z-index: 40;
       display: flex;
       align-items: center;
       gap: 28px;
@@ -204,6 +204,98 @@
       -webkit-backdrop-filter: blur(16px);
       white-space: nowrap;
       margin-bottom: 34px;
+      transition: width 0.3s ease;
+    }
+
+    /* Mobile Navigation & Drawer */
+    .mobile-nav-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      width: 32px;
+      height: 32px;
+      padding: 7px 5px;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      z-index: 50;
+    }
+
+    .mobile-nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #171d13;
+      border-radius: 2px;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+
+    .mobile-nav-toggle.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+    .mobile-nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-nav-toggle.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    .mobile-nav-drawer {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(215, 225, 200, 0.9);
+      border-radius: 20px;
+      padding: 14px 16px;
+      box-shadow: 0 18px 48px rgba(30, 45, 15, 0.16);
+      flex-direction: column;
+      gap: 6px;
+      z-index: 100;
+    }
+
+    .mobile-nav-drawer.open {
+      display: flex;
+      animation: fadeInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-nav-link {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #242e14;
+      padding: 9px 14px;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-nav-link:hover, .mobile-nav-link:active {
+      background: #eff5e4;
+      color: var(--olive);
+    }
+
+    .mobile-nav-link.mobile-nav-btn {
+      background: var(--olive);
+      color: #ffffff !important;
+      font-weight: 600;
+      text-align: center;
+      justify-content: center;
+      margin-top: 6px;
+      box-shadow: 0 2px 8px rgba(45, 68, 12, 0.25);
     }
 
     .brand {
@@ -1106,9 +1198,68 @@
       align-items: flex-start;
     }
 
+    .tour-stepper {
+      display: inline-flex;
+      align-items: center;
+      background: #eef4e2;
+      border: 1px solid #d8e4c7;
+      border-radius: 999px;
+      padding: 2px 4px;
+      gap: 4px;
+    }
+
+    .tour-arrow-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 0;
+      background: #ffffff;
+      color: var(--olive);
+      font-size: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .tour-arrow-btn:hover {
+      background: var(--olive);
+      color: #ffffff;
+      transform: scale(1.08);
+    }
+
     @media (max-width: 960px) {
       .sk-layout {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 28px;
+      }
+      .tour-frame {
+        order: 1 !important;
+        position: sticky;
+        top: 12px;
+        z-index: 25;
+        border-radius: 14px;
+      }
+      .sk-list {
+        order: 2 !important;
+        gap: 6px;
+      }
+      .sk-item {
+        padding: 10px 14px;
+      }
+      .sk-item b {
+        font-size: 13px;
+      }
+      .sk-item span {
+        font-size: 11.5px;
+      }
+      .tour-screen-caption {
+        padding: 10px 14px;
+        font-size: 11.5px;
       }
     }
 
@@ -1737,6 +1888,157 @@
       font-size: 12.5px;
       color: #6a745e;
     }
+
+    /* MOBILE FORMATTING & LAG REDUCTION (PHONE VIEWPORT) */
+    @media (max-width: 768px) {
+      .hero .nav {
+        width: calc(100% - 24px);
+        max-width: 480px;
+        margin: 0 auto 24px;
+        gap: 8px;
+        padding: 5px 8px 5px 14px;
+        justify-content: space-between;
+      }
+
+      .navlinks {
+        display: none !important;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+      }
+
+      .hero-nav-btn {
+        padding: 0 14px;
+        height: 32px;
+        font-size: 12px;
+      }
+
+      .hide-mobile {
+        display: none !important;
+      }
+
+      .hero-header-stack {
+        padding: 0 16px;
+        margin-bottom: 20px;
+      }
+
+      #heroTitle {
+        font-size: clamp(32px, 8vw, 46px);
+        margin-bottom: 12px;
+      }
+
+      .hero-sub {
+        font-size: 14.5px;
+        line-height: 1.45;
+        margin-bottom: 18px;
+      }
+
+      .hero-actions {
+        gap: 8px;
+      }
+
+      .hero-btn-dark, .hero-btn-light {
+        height: 36px;
+        padding: 0 16px;
+        font-size: 12.5px;
+      }
+
+      .hero-screen-stage {
+        width: calc(100% - 24px);
+      }
+
+      .hero-mac-menubar .hero-mac-items,
+      .hero-mac-menubar .hero-mac-pill {
+        display: none !important;
+      }
+
+      .product-section {
+        padding: 60px 16px 72px;
+      }
+
+      .dashboard-window {
+        margin: 28px auto 0;
+        border-radius: 14px;
+      }
+
+      .dash-hud-badge {
+        bottom: 12px;
+        left: 12px;
+        padding: 5px 10px;
+        font-size: 11px;
+      }
+
+      #videoPlayPauseBtn {
+        padding: 5px 10px !important;
+        font-size: 11px !important;
+      }
+
+      .bento-section {
+        padding: 64px 0;
+      }
+
+      .bento-card {
+        padding: 22px 18px;
+        border-radius: 16px;
+      }
+
+      .folder-stage-wrap {
+        min-height: 190px;
+        padding-top: 24px;
+      }
+
+      .folder-float {
+        --ff-spread: 140px;
+      }
+
+      .figma-showcase-section {
+        padding: 64px 0;
+      }
+
+      .compare-section {
+        padding: 64px 0;
+      }
+
+      .compare-card {
+        padding: 24px 18px;
+        border-radius: 16px;
+      }
+
+      .dev-section {
+        padding: 64px 0;
+      }
+
+      .semantic-section {
+        padding: 64px 0;
+      }
+
+      .search-console-box {
+        padding: 18px 14px;
+        border-radius: 16px;
+      }
+
+      .cta-card {
+        padding: 32px 20px;
+        border-radius: 20px;
+      }
+
+      .mega-footer {
+        padding: 60px 18px 32px;
+      }
+
+      .footer-columns {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom-bar {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+    }
+
   </style>
 </head>
 <body class="intro">
@@ -1755,13 +2057,27 @@
       <!-- TOP NAVIGATION PILL -->
       <nav class="nav">
         <a class="brand" href="#hero" aria-label="Capture home"><i></i>Capture</a>
-        <div class="navlinks">
+        <div class="navlinks" id="desktopNavLinks">
           <a href="#product">Product</a>
-          <a href="#workflow">Workflow</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#figma-tour">OS Tour</a>
           <a href="#compare">Compare</a>
-          <a href="#early-access">Early Access</a>
         </div>
-        <a class="hero-nav-btn" href="#join">Join waitlist</a>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <a class="hero-nav-btn" href="#join">Join waitlist</a>
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+
+        <!-- Mobile dropdown drawer -->
+        <div class="mobile-nav-drawer" id="mobileNavDrawer">
+          <a href="#product" class="mobile-nav-link">Product <span>↓</span></a>
+          <a href="#architecture" class="mobile-nav-link">Architecture <span>↓</span></a>
+          <a href="#figma-tour" class="mobile-nav-link">Interactive OS Tour <span>↓</span></a>
+          <a href="#compare" class="mobile-nav-link">Compare <span>↓</span></a>
+          <a href="#join" class="mobile-nav-link mobile-nav-btn">Join waitlist →</a>
+        </div>
       </nav>
 
       <!-- HERO HEADINGS & CTA -->
@@ -1853,28 +2169,16 @@
               <span style="color:#78846b;font-size:12px;" class="hide-mobile">File · Edit · View · Workspaces · Window · Help</span>
             </div>
 
-            <!-- Perspective & Motion Video Switcher -->
-            <div class="dash-tabs" id="dashTabs" style="overflow-x:auto;max-width:680px;scrollbar-width:none;">
-              <button class="dash-tab on" data-screen="motion" id="videoMotionTab">▶ Motion Reel</button>
-              <button class="dash-tab" data-screen="desktop_home">Desktop — Home</button>
-              <button class="dash-tab" data-screen="app_launcher">App Launcher</button>
-              <button class="dash-tab" data-screen="universal_search">Universal Search</button>
-              <button class="dash-tab" data-screen="agents_live">Live Agents</button>
-              <button class="dash-tab" data-screen="tasks_composer">Tasks Composer</button>
-              <button class="dash-tab" data-screen="review_approval">Review & Approval</button>
-              <button class="dash-tab" data-screen="mission_control">Mission Control</button>
-            </div>
-
-            <div style="display:flex;align-items:center;gap:10px;">
-              <span class="pill" style="font-size:11px;padding:3px 9px;">● 32 GB RAM</span>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span class="pill" style="font-size:11px;padding:3px 10px;background:#e2eed1;color:#2c3a10;">● Live Motion Reel</span>
+              <span class="pill hide-mobile" style="font-size:11px;padding:3px 9px;">32 GB RAM</span>
             </div>
           </div>
 
           <div class="dash-screen-container" style="position:relative;background:#05070a;line-height:0;overflow:hidden;border-radius:0 0 16px 16px;">
-            <video id="mainDashVideo" autoplay muted loop playsinline preload="auto" poster="./assets/screens/desktop_home@2x.png" style="width:100%;height:auto;display:block;object-fit:cover;">
+            <video id="mainDashVideo" autoplay muted loop playsinline preload="metadata" poster="./assets/screens/desktop_home.png" style="width:100%;height:auto;display:block;object-fit:cover;">
               <source src="./assets/capture_desktop_motion.mp4" type="video/mp4">
             </video>
-            <img id="mainDashImg" src="./assets/screens/desktop_home@2x.png" alt="Capture Cloud Desktop" style="display:none;width:100%;height:auto;object-fit:cover;" draggable="false">
             
             <div class="dash-hud-badge" style="position:absolute;bottom:18px;left:20px;z-index:10;display:flex;align-items:center;gap:8px;background:rgba(20,24,18,0.75);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);padding:6px 14px;border-radius:999px;color:#f0f5e8;font-size:12px;font-family:var(--font-sans);">
               <span class="dash-hud-dot" style="width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;"></span>
@@ -1893,7 +2197,7 @@
     </section>
 
     <!-- SECTION 2: THE 5-STAGE ARCHITECTURE (BENTO GRID WITH REACT BITS FOLDERFLOAT) -->
-    <section class="bento-section" id="architecture">
+    <section class="bento-section" id="architecture" data-alias="workflow">
       <div class="section-inner">
         <div style="text-align:center;">
           <span class="pill">
@@ -2062,7 +2366,7 @@
     </section>
 
     <!-- SECTION 3: INTERACTIVE FIGMA OS SHOWCASE (ALL SCREENS FROM FIGMA) -->
-    <section class="figma-showcase-section" id="figma-tour">
+    <section class="figma-showcase-section" id="figma-tour" data-alias="tour">
       <div class="section-inner">
         <div style="text-align:center;">
           <span class="pill">
@@ -2075,69 +2379,6 @@
         </div>
 
         <div class="sk-layout">
-          <ul class="sk-list" id="tourList">
-            <li class="sk-item on" data-screen="desktop_home" data-name="1. Desktop — Clean Meadow" data-desc="The core Capture Cloud OS desktop with peaceful meadow backdrop, persistent menu bar, and floating agent windows.">
-              <b>1. Desktop — Clean Meadow</b>
-              <span>The core Capture OS desktop with persistent menu bar and floating agent workspace.</span>
-            </li>
-            <li class="sk-item" data-screen="app_launcher" data-name="2. App Launcher — Full Modal" data-desc="Quickly launch developer tools, browser VMs, editors, and agent pipelines without switching contexts.">
-              <b>2. App Launcher — Full Modal</b>
-              <span>Instant access to developer tools, browser VMs, editors, and agent pipelines.</span>
-            </li>
-            <li class="sk-item" data-screen="mission_control" data-name="3. Mission Control — Workspaces" data-desc="Four dedicated spaces: Development, Research, Launch, and Personal on one continuous computer.">
-              <b>3. Mission Control — Workspaces</b>
-              <span>Four continuous workspaces: Development, Research, Launch, and Personal.</span>
-            </li>
-            <li class="sk-item" data-screen="universal_search" data-name="4. Universal Search — Memory" data-desc="Queries across Slack, Notion, and Drive to synthesize verified answers with citation confidence.">
-              <b>4. Universal Search — Memory</b>
-              <span>Queries across Slack, Notion, and Drive with 98% confidence citation synthesis.</span>
-            </li>
-            <li class="sk-item" data-screen="agents_live" data-name="5. Agents — Live Session" data-desc="Atlas actively fixes validation bugs, runs regression test suites, and logs context in an isolated IDE.">
-              <b>5. Agents — Live Session</b>
-              <span>Atlas actively fixes validation bugs, runs tests, and logs context in an isolated IDE.</span>
-            </li>
-            <li class="sk-item" data-screen="tasks_composer" data-name="6. Tasks — Task Composer" data-desc="Define natural language goals, assign specialized models, and configure zero-trust sandboxes.">
-              <b>6. Tasks — Task Composer</b>
-              <span>Define goals, select models, and configure sandboxed cloud execution with 1 click.</span>
-            </li>
-            <li class="sk-item" data-screen="review_approval" data-name="7. Review — Diff Approval" data-desc="Interactive visual diff review with 33 passing regression tests and 1-click human approval.">
-              <b>7. Review — Diff Approval</b>
-              <span>Visual diff with 33 passing tests and 1-click human approval before code lands.</span>
-            </li>
-            <li class="sk-item" data-screen="contradiction_center" data-name="8. Memory — Contradiction Center" data-desc="Detects when two documents disagree (Oct 14 in Slack vs Oct 12 in Notes) and resolves source authority.">
-              <b>8. Memory — Contradiction Center</b>
-              <span>Flags conflicting project dates across team tools instead of hallucinating.</span>
-            </li>
-            <li class="sk-item" data-screen="spaces_launch" data-name="9. Spaces — Launch Environment" data-desc="Dedicated persistent workspaces with linked repositories, team memories, and active agents.">
-              <b>9. Spaces — Launch Environment</b>
-              <span>Everything for the October 14 release: active agents, verified notes, and repos.</span>
-            </li>
-            <li class="sk-item" data-screen="cloud_desktop_code" data-name="10. Cloud Desktop — Micro-VM" data-desc="Complete cloud micro-VM with code editor, terminal, browser sandbox, and display drivers.">
-              <b>10. Cloud Desktop — Micro-VM</b>
-              <span>Full cloud computer with code editor, browser preview, and terminal running 24/7.</span>
-            </li>
-            <li class="sk-item" data-screen="library_integrations" data-name="11. Library — Integrations" data-desc="Connect GitHub, Slack, Linear, Google Drive, Notion, and MCP servers directly.">
-              <b>11. Library — Integrations</b>
-              <span>Zero-friction connectors for GitHub, Slack, Notion, Linear, and custom MCP servers.</span>
-            </li>
-            <li class="sk-item" data-screen="inbox_automations" data-name="12. Inbox — Automations" data-desc="Automated background tracking so nothing slips through without constant prompting.">
-              <b>12. Inbox — Automations</b>
-              <span>Self-organizing event stream and background triggers that keep you in sync.</span>
-            </li>
-            <li class="sk-item" data-screen="system_overlays" data-name="13. System Overlays — Focused View" data-desc="High-focus modal workspaces for deep coding sessions, model inspection, and context inspection.">
-              <b>13. System Overlays — Focused View</b>
-              <span>High-focus modal workspaces for deep coding sessions and model inspection.</span>
-            </li>
-            <li class="sk-item" data-screen="settings_storage" data-name="14. Settings — Files & Storage" data-desc="Fine-grained memory preferences, zero-trust sandboxes, and hybrid local/cloud storage.">
-              <b>14. Settings — Files & Storage</b>
-              <span>Full user control over encrypted memory, model access, and local vs cloud sync.</span>
-            </li>
-            <li class="sk-item" data-screen="lock_screen" data-name="15. Lock Screen — Cloud Continuity" data-desc="Close your laptop with peace of mind. Your agents keep working in the cloud securely.">
-              <b>15. Lock Screen — Cloud Continuity</b>
-              <span>Shut your laptop lid. Your cloud desktop and agents continue running uninterrupted.</span>
-            </li>
-          </ul>
-
           <div class="tour-frame" id="figmaFrame">
             <div class="tour-screen-topbar">
               <div style="display:flex;align-items:center;gap:10px;">
@@ -2148,21 +2389,90 @@
                 </div>
                 <span id="tourScreenTitle" style="font-size:13px;font-weight:600;color:var(--ink);">1. Desktop — Clean Meadow</span>
               </div>
-              <div style="display:flex;align-items:center;gap:10px;">
-                <span class="pill" id="tourScreenBadge" style="font-size:10.5px;padding:2px 8px;">2880 × 1800 Retina</span>
-                <a id="tourZoomBtn" href="./assets/screens/desktop_home@2x.png?v=pdf" target="_blank" class="btn" style="height:26px;font-size:11.5px;padding:0 10px;background:#eef4e2;color:var(--olive);text-decoration:none;">View Full Res ↗</a>
+
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div class="tour-stepper">
+                  <button id="tourPrevBtn" class="tour-arrow-btn" aria-label="Previous screen" title="Previous screen">◀</button>
+                  <span id="tourCounter" style="font-family:var(--font-mono);font-size:11px;color:#5a684b;padding:0 4px;font-weight:600;">1 / 15</span>
+                  <button id="tourNextBtn" class="tour-arrow-btn" aria-label="Next screen" title="Next screen">▶</button>
+                </div>
+                <span class="pill hide-mobile" id="tourScreenBadge" style="font-size:10.5px;padding:2px 8px;">2880 × 1800 Retina</span>
+                <a id="tourZoomBtn" href="./assets/screens/desktop_home@2x.png" target="_blank" class="btn" style="height:26px;font-size:11.5px;padding:0 10px;background:#eef4e2;color:var(--olive);text-decoration:none;">Full Res ↗</a>
               </div>
             </div>
 
-            <div class="tour-screen-img-wrap">
-              <img id="tourDisplayImg" src="./assets/screens/desktop_home@2x.png?v=pdf" alt="1. Desktop — Clean Meadow">
+            <div class="tour-screen-img-wrap" style="position:relative;background:#0d100c;line-height:0;min-height:220px;">
+              <img id="tourDisplayImg" src="./assets/screens/desktop_home.png" srcset="./assets/screens/desktop_home.png 1x, ./assets/screens/desktop_home@2x.png 2x" alt="1. Desktop — Clean Meadow" style="width:100%;height:auto;display:block;transition:opacity 0.18s ease;">
             </div>
 
             <div class="tour-screen-caption">
               <span id="tourScreenDesc">The core Capture Cloud OS desktop with peaceful meadow backdrop, persistent menu bar, and floating agent windows.</span>
-              <span style="font-family:var(--font-mono);font-size:11px;color:#889478;">16:10 Retina Display · PDF Master</span>
+              <span style="font-family:var(--font-mono);font-size:11px;color:#889478;" class="hide-mobile">16:10 Retina Display · PDF Master</span>
             </div>
           </div>
+
+          <ul class="sk-list" id="tourList">
+            <li class="sk-item on" data-index="0" data-screen="desktop_home" data-name="1. Desktop — Clean Meadow" data-desc="The core Capture Cloud OS desktop with peaceful meadow backdrop, persistent menu bar, and floating agent windows.">
+              <b>1. Desktop — Clean Meadow</b>
+              <span>The core Capture OS desktop with persistent menu bar and floating agent workspace.</span>
+            </li>
+            <li class="sk-item" data-index="1" data-screen="app_launcher" data-name="2. App Launcher — Full Modal" data-desc="Quickly launch developer tools, browser VMs, editors, and agent pipelines without switching contexts.">
+              <b>2. App Launcher — Full Modal</b>
+              <span>Instant access to developer tools, browser VMs, editors, and agent pipelines.</span>
+            </li>
+            <li class="sk-item" data-index="2" data-screen="mission_control" data-name="3. Mission Control — Workspaces" data-desc="Four dedicated spaces: Development, Research, Launch, and Personal on one continuous computer.">
+              <b>3. Mission Control — Workspaces</b>
+              <span>Four continuous workspaces: Development, Research, Launch, and Personal.</span>
+            </li>
+            <li class="sk-item" data-index="3" data-screen="universal_search" data-name="4. Universal Search — Memory" data-desc="Queries across Slack, Notion, and Drive to synthesize verified answers with citation confidence.">
+              <b>4. Universal Search — Memory</b>
+              <span>Queries across Slack, Notion, and Drive with 98% confidence citation synthesis.</span>
+            </li>
+            <li class="sk-item" data-index="4" data-screen="agents_live" data-name="5. Agents — Live Session" data-desc="Atlas actively fixes validation bugs, runs regression test suites, and logs context in an isolated IDE.">
+              <b>5. Agents — Live Session</b>
+              <span>Atlas actively fixes validation bugs, runs tests, and logs context in an isolated IDE.</span>
+            </li>
+            <li class="sk-item" data-index="5" data-screen="tasks_composer" data-name="6. Tasks — Task Composer" data-desc="Define natural language goals, assign specialized models, and configure zero-trust sandboxes.">
+              <b>6. Tasks — Task Composer</b>
+              <span>Define goals, select models, and configure sandboxed cloud execution with 1 click.</span>
+            </li>
+            <li class="sk-item" data-index="6" data-screen="review_approval" data-name="7. Review — Diff Approval" data-desc="Interactive visual diff review with 33 passing regression tests and 1-click human approval.">
+              <b>7. Review — Diff Approval</b>
+              <span>Visual diff with 33 passing tests and 1-click human approval before code lands.</span>
+            </li>
+            <li class="sk-item" data-index="7" data-screen="contradiction_center" data-name="8. Memory — Contradiction Center" data-desc="Detects when two documents disagree (Oct 14 in Slack vs Oct 12 in Notes) and resolves source authority.">
+              <b>8. Memory — Contradiction Center</b>
+              <span>Flags conflicting project dates across team tools instead of hallucinating.</span>
+            </li>
+            <li class="sk-item" data-index="8" data-screen="spaces_launch" data-name="9. Spaces — Launch Environment" data-desc="Dedicated persistent workspaces with linked repositories, team memories, and active agents.">
+              <b>9. Spaces — Launch Environment</b>
+              <span>Everything for the October 14 release: active agents, verified notes, and repos.</span>
+            </li>
+            <li class="sk-item" data-index="9" data-screen="cloud_desktop_code" data-name="10. Cloud Desktop — Micro-VM" data-desc="Complete cloud micro-VM with code editor, terminal, browser sandbox, and display drivers.">
+              <b>10. Cloud Desktop — Micro-VM</b>
+              <span>Full cloud computer with code editor, browser preview, and terminal running 24/7.</span>
+            </li>
+            <li class="sk-item" data-index="10" data-screen="library_integrations" data-name="11. Library — Integrations" data-desc="Connect GitHub, Slack, Linear, Google Drive, Notion, and MCP servers directly.">
+              <b>11. Library — Integrations</b>
+              <span>Zero-friction connectors for GitHub, Slack, Notion, Linear, and custom MCP servers.</span>
+            </li>
+            <li class="sk-item" data-index="11" data-screen="inbox_automations" data-name="12. Inbox — Automations" data-desc="Automated background tracking so nothing slips through without constant prompting.">
+              <b>12. Inbox — Automations</b>
+              <span>Self-organizing event stream and background triggers that keep you in sync.</span>
+            </li>
+            <li class="sk-item" data-index="12" data-screen="system_overlays" data-name="13. System Overlays — Focused View" data-desc="High-focus modal workspaces for deep coding sessions, model inspection, and context inspection.">
+              <b>13. System Overlays — Focused View</b>
+              <span>High-focus modal workspaces for deep coding sessions and model inspection.</span>
+            </li>
+            <li class="sk-item" data-index="13" data-screen="settings_storage" data-name="14. Settings — Files & Storage" data-desc="Fine-grained memory preferences, zero-trust sandboxes, and hybrid local/cloud storage.">
+              <b>14. Settings — Files & Storage</b>
+              <span>Full user control over encrypted memory, model access, and local vs cloud sync.</span>
+            </li>
+            <li class="sk-item" data-index="14" data-screen="lock_screen" data-name="15. Lock Screen — Cloud Continuity" data-desc="Close your laptop with peace of mind. Your agents keep working in the cloud securely.">
+              <b>15. Lock Screen — Cloud Continuity</b>
+              <span>Shut your laptop lid. Your cloud desktop and agents continue running uninterrupted.</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -2362,7 +2672,7 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
     </section>
 
     <!-- SECTION 9: MEGA FOOTER (PRESERVED VERBATIM) -->
-    <footer class="mega-footer">
+    <footer class="mega-footer" id="footer">
       <div class="footer-columns">
         <div>
           <a class="brand" href="#hero" style="color:#ffffff;margin-bottom:16px;">
@@ -2501,15 +2811,17 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
         walk(el);
       });
 
-            // 4. BUTTERY SMOOTH 120FPS LENIS INTEGRATION
-      const lenis = window.Lenis ? new Lenis({
+            // 4. PERFORMANCE-OPTIMIZED SCROLL & NAVIGATION (NATIVE 120HZ TOUCH ON MOBILE)
+      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 768);
+
+      // Only engage custom Lenis interpolation on desktop pointer wheels; keep mobile 100% native smooth momentum
+      const lenis = (window.Lenis && !isTouch) ? new Lenis({
         duration: 0.85,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
         wheelMultiplier: 1.0,
-        touchMultiplier: 1.2,
         infinite: false
       }) : null;
 
@@ -2521,38 +2833,70 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
         gsap.ticker.lagSmoothing(500, 33);
       }
 
-      document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-        let t = document.querySelector(a.getAttribute('href'));
-        if (t) {
-          e.preventDefault();
-          lenis ? lenis.scrollTo(t, { duration: 1.1 }) : t.scrollIntoView({ behavior: 'smooth' });
-        }
-      }));
+      // Smooth anchor scrolling handling all target IDs and aliases with clean offset
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const href = a.getAttribute('href');
+          if (!href || href === '#') return;
+
+          let target = document.querySelector(href);
+          if (!target) {
+            const alias = href.replace('#', '');
+            target = document.querySelector(`[data-alias="${alias}"]`);
+          }
+
+          if (target) {
+            e.preventDefault();
+            if (lenis) {
+              lenis.scrollTo(target, { offset: -24, duration: 0.9 });
+            } else {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+
+      // MOBILE NAVIGATION DRAWER TOGGLE
+      const mobileNavToggle = document.getElementById('mobileNavToggle');
+      const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+      if (mobileNavToggle && mobileNavDrawer) {
+        mobileNavToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          mobileNavToggle.classList.toggle('open');
+          mobileNavDrawer.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileNavToggle.classList.remove('open');
+            mobileNavDrawer.classList.remove('open');
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!mobileNavDrawer.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+            mobileNavToggle.classList.remove('open');
+            mobileNavDrawer.classList.remove('open');
+          }
+        });
+      }
 
       // 5. CLEAN INTRO ANIMATION (NO SCROLL BLOCKING)
       document.body.classList.remove('intro');
       gsap.from('.hero-header-stack', { opacity: 0, y: 18, duration: 0.9, ease: 'power3.out', delay: 0.1 });
       gsap.from('.hero-screen-stage', { opacity: 0, y: 28, duration: 1.1, ease: 'power3.out', delay: 0.25 });
 
-      // 6. PRODUCT DASHBOARD MOTION VIDEO & PERSPECTIVE TABS
-      const dashTabs = document.querySelectorAll('#dashTabs .dash-tab');
+      // 6. PRODUCT DASHBOARD MOTION VIDEO ON LOOP (DEDICATED SHOWCASE ALONE)
       const mainDashVideo = document.getElementById('mainDashVideo');
-      const mainDashImg = document.getElementById('mainDashImg');
-      const dashHudStatus = document.getElementById('dashHudStatus');
       const videoPlayPauseBtn = document.getElementById('videoPlayPauseBtn');
       const videoPlayPauseIcon = document.getElementById('videoPlayPauseIcon');
       const videoPlayPauseText = document.getElementById('videoPlayPauseText');
 
       if (mainDashVideo) {
-        // Ensure video displays and plays smoothly
-        mainDashVideo.style.display = 'block';
-        if (mainDashImg) mainDashImg.style.display = 'none';
-        
         mainDashVideo.play().then(() => {
           if (videoPlayPauseIcon) videoPlayPauseIcon.textContent = '❚❚';
           if (videoPlayPauseText) videoPlayPauseText.textContent = 'Pause Reel';
         }).catch(() => {
-          // If browser policy requires user gesture to start playback
           if (videoPlayPauseIcon) videoPlayPauseIcon.textContent = '▶';
           if (videoPlayPauseText) videoPlayPauseText.textContent = 'Play Reel';
         });
@@ -2571,47 +2915,22 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
             }
           });
         }
-      }
 
-      if (dashTabs) {
-        dashTabs.forEach(tab => {
-          tab.addEventListener('click', () => {
-            dashTabs.forEach(t => t.classList.remove('on'));
-            tab.classList.add('on');
-            const screen = tab.dataset.screen;
-
-            if (screen === 'motion') {
-              if (mainDashImg) mainDashImg.style.display = 'none';
-              if (mainDashVideo) {
-                mainDashVideo.style.display = 'block';
-                mainDashVideo.play().catch(() => {});
-              }
-              if (videoPlayPauseBtn) videoPlayPauseBtn.style.display = 'flex';
-              if (dashHudStatus) {
-                dashHudStatus.textContent = 'Live Motion Reel · Multi-Agent Cloud Execution';
-              }
-            } else {
-              if (mainDashVideo) {
+        // Pause video decoding when scrolled away to eliminate GPU lag
+        if ('IntersectionObserver' in window) {
+          const videoObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                if (!videoPlayPauseBtn || videoPlayPauseText.textContent !== 'Play Reel') {
+                  mainDashVideo.play().catch(() => {});
+                }
+              } else {
                 mainDashVideo.pause();
-                mainDashVideo.style.display = 'none';
               }
-              if (videoPlayPauseBtn) videoPlayPauseBtn.style.display = 'none';
-              if (mainDashImg) {
-                mainDashImg.style.display = 'block';
-                mainDashImg.style.opacity = '0.3';
-                mainDashImg.style.transform = 'scale(0.995)';
-                setTimeout(() => {
-                  mainDashImg.src = './assets/screens/' + screen + '@2x.png?v=pdf';
-                  mainDashImg.style.opacity = '1';
-                  mainDashImg.style.transform = 'scale(1)';
-                }, 80);
-              }
-              if (dashHudStatus) {
-                dashHudStatus.textContent = tab.textContent + ' · High-Resolution Retina Frame';
-              }
-            }
-          });
-        });
+            });
+          }, { threshold: 0.05 });
+          videoObs.observe(mainDashVideo);
+        }
       }
 
       // 7. HOTKEY KEYCAPS INTERACTIVE HUD
@@ -2872,39 +3191,99 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
       initFolderFloat();
 
       // ======================================================================
-      // 9. FIGMA OS SHOWCASE (DYNAMIC TAB SWITCHER USING USER'S FIGMA SCREENS)
+      // 9. FIGMA OS SHOWCASE (HIGH-SPEED PRELOADED INSTANT SCREEN SWITCHER)
       // ======================================================================
-      const tourItems = document.querySelectorAll('#tourList .sk-item');
+      const tourItems = Array.from(document.querySelectorAll('#tourList .sk-item'));
       const tourDisplayImg = document.getElementById('tourDisplayImg');
       const tourScreenTitle = document.getElementById('tourScreenTitle');
       const tourScreenDesc = document.getElementById('tourScreenDesc');
       const tourZoomBtn = document.getElementById('tourZoomBtn');
+      const tourCounter = document.getElementById('tourCounter');
+      const tourPrevBtn = document.getElementById('tourPrevBtn');
+      const tourNextBtn = document.getElementById('tourNextBtn');
 
-      if (tourItems && tourDisplayImg) {
-        tourItems.forEach(item => {
-          item.addEventListener('click', () => {
-            tourItems.forEach(i => i.classList.remove('on'));
-            item.classList.add('on');
+      let currentTourIdx = 0;
 
-            const screenKey = item.dataset.screen;
-            const screenName = item.dataset.name;
-            const screenDesc = item.dataset.desc;
+      // PRELOAD ALL 15 SCREENS IMMEDIATELY INTO BROWSER CACHE
+      const preloadedScreens = {};
+      tourItems.forEach(item => {
+        const key = item.dataset.screen;
+        if (key) {
+          const img = new Image();
+          img.src = `./assets/screens/${key}.png`;
+          preloadedScreens[key] = img;
+        }
+      });
 
-            if (tourScreenTitle) tourScreenTitle.textContent = screenName;
-            if (tourScreenDesc) tourScreenDesc.textContent = screenDesc;
-            if (tourZoomBtn) tourZoomBtn.href = `./assets/screens/${screenKey}@2x.png?v=pdf`;
+      function activateTourScreen(idx, shouldScrollMobile) {
+        if (idx < 0) idx = tourItems.length - 1;
+        if (idx >= tourItems.length) idx = 0;
+        currentTourIdx = idx;
 
-            if (tourDisplayImg) {
-              tourDisplayImg.style.opacity = '0.2';
-              tourDisplayImg.style.transform = 'scale(0.995)';
-              setTimeout(() => {
-                tourDisplayImg.src = `./assets/screens/${screenKey}@2x.png?v=pdf`;
-                tourDisplayImg.alt = screenName;
-                tourDisplayImg.style.opacity = '1';
-                tourDisplayImg.style.transform = 'scale(1)';
-              }, 120);
-            }
-          });
+        tourItems.forEach((it, i) => {
+          if (i === idx) it.classList.add('on');
+          else it.classList.remove('on');
+        });
+
+        const activeItem = tourItems[idx];
+        if (!activeItem) return;
+
+        const screenKey = activeItem.dataset.screen;
+        const screenName = activeItem.dataset.name;
+        const screenDesc = activeItem.dataset.desc;
+
+        if (tourScreenTitle) tourScreenTitle.textContent = screenName;
+        if (tourScreenDesc) tourScreenDesc.textContent = screenDesc;
+        if (tourCounter) tourCounter.textContent = `${idx + 1} / ${tourItems.length}`;
+        if (tourZoomBtn) tourZoomBtn.href = `./assets/screens/${screenKey}@2x.png`;
+
+        if (tourDisplayImg) {
+          const targetSrc = `./assets/screens/${screenKey}.png`;
+          const retinaSrc = `./assets/screens/${screenKey}@2x.png`;
+
+          tourDisplayImg.style.opacity = '0.35';
+
+          const applySwap = () => {
+            tourDisplayImg.src = targetSrc;
+            tourDisplayImg.srcset = `${targetSrc} 1x, ${retinaSrc} 2x`;
+            tourDisplayImg.alt = screenName;
+            tourDisplayImg.style.opacity = '1';
+          };
+
+          if (preloadedScreens[screenKey] && preloadedScreens[screenKey].complete) {
+            applySwap();
+          } else {
+            const loader = new Image();
+            loader.onload = applySwap;
+            loader.src = targetSrc;
+          }
+        }
+
+        if (shouldScrollMobile && window.innerWidth <= 960) {
+          const frame = document.getElementById('figmaFrame');
+          if (frame) {
+            frame.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+      }
+
+      tourItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          activateTourScreen(index, false);
+        });
+      });
+
+      if (tourPrevBtn) {
+        tourPrevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          activateTourScreen(currentTourIdx - 1, true);
+        });
+      }
+
+      if (tourNextBtn) {
+        tourNextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          activateTourScreen(currentTourIdx + 1, true);
         });
       }
 
