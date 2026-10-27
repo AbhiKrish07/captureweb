@@ -10,6 +10,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <!-- CRITICAL HIGH-PRIORITY PRELOADS FOR INSTANT HERO & GRAPHICS RENDERING -->
+  <link rel="preload" as="image" href="./meadow_clean_bg.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="./assets/screens/desktop_home.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="./assets/cloud_left.webp" type="image/webp">
+  <link rel="preload" as="image" href="./assets/cloud_right.webp" type="image/webp">
+
   <style>
     /* ==========================================================================
        ORIGINAL HERO & CORE THEME (EXACT RESTORATION FROM BAK)
@@ -173,7 +179,7 @@
       position: relative;
       min-height: 100vh;
       overflow: hidden;
-      background: url('./meadow_clean_bg.jpg') center 40% / cover no-repeat;
+      background: #7ba652 url('./meadow_clean_bg.webp') center 40% / cover no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -2047,12 +2053,12 @@
   <div id="app">
     <!-- EXACT ORIGINAL HERO (100% UNTOUCHED RESTORATION) -->
     <section class="hero" id="hero">
-      <!-- FLOATING PARALLAX CLOUDS (SEPARATE FLOATING LAYERS) -->
+      <!-- FLOATING PARALLAX CLOUDS (SEPARATE FLOATING LAYERS - LOCAL OPTIMIZED WEBP) -->
       <div class="cloud cloud-l" data-par="-60">
-        <img class="drift-a" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261021_093216_44218665-b15e-4566-a2d4-2676ab03609d.png" alt="" draggable="false">
+        <img class="drift-a" src="./assets/cloud_left.webp" alt="" draggable="false" decoding="async">
       </div>
       <div class="cloud cloud-r" data-par="-90">
-        <img class="drift-b" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261021_093215_0f37c0c3-f82c-485b-87dd-5a35b75a8782.png" alt="" draggable="false">
+        <img class="drift-b" src="./assets/cloud_right.webp" alt="" draggable="false" decoding="async">
       </div>
       <!-- TOP NAVIGATION PILL -->
       <nav class="nav">
@@ -2124,7 +2130,7 @@
             </div>
           </div>
           <div class="hero-mac-body">
-            <img src="./assets/screens/desktop_home@2x.png" alt="Capture Cloud Desktop" draggable="false">
+            <img src="./assets/screens/desktop_home.webp" alt="Capture Cloud Desktop" draggable="false" fetchpriority="high">
           </div>
         </div>
       </div>
@@ -2176,7 +2182,7 @@
           </div>
 
           <div class="dash-screen-container" style="position:relative;background:#05070a;line-height:0;overflow:hidden;border-radius:0 0 16px 16px;">
-            <video id="mainDashVideo" autoplay muted loop playsinline preload="metadata" poster="./assets/screens/desktop_home.png" style="width:100%;height:auto;display:block;object-fit:cover;">
+            <video id="mainDashVideo" muted loop playsinline preload="none" poster="./assets/screens/desktop_home.webp" style="width:100%;height:auto;display:block;object-fit:cover;">
               <source src="./assets/capture_desktop_motion.mp4" type="video/mp4">
             </video>
             
@@ -2261,7 +2267,7 @@
               <p>When two documents conflict, Capture flags the disagreement instead of hallucinating.</p>
 
               <div class="bento-graphic-container">
-                <img src="./assets/graphic_contradiction_resolution.png" alt="Capture Contradiction Resolution" class="bento-interactive-img" draggable="false">
+                <img src="./assets/graphic_contradiction_resolution.webp" alt="Capture Contradiction Resolution" class="bento-interactive-img" draggable="false" loading="lazy" decoding="async">
               </div>
             </div>
             <span class="bento-tag">Contradiction Center · Zero Hallucinations</span>
@@ -2356,7 +2362,7 @@
               <p>Describe a space in plain language. Capture launches cloud micro-desktops with native display drivers to run tests, drafts, and audits autonomously.</p>
 
               <div class="bento-graphic-container">
-                <img src="./assets/graphic_quietstudio_desktop.png" alt="QuietStudio Cloud Desktop Micro-VMs" class="bento-interactive-img" draggable="false">
+                <img src="./assets/graphic_quietstudio_desktop.webp" alt="QuietStudio Cloud Desktop Micro-VMs" class="bento-interactive-img" draggable="false" loading="lazy" decoding="async">
               </div>
             </div>
             <span class="bento-tag">Micro-VM Sandboxes · Native CDP Drivers</span>
@@ -2656,7 +2662,7 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
     <!-- SECTION 8: THE WAITLIST (PRESERVED VERBATIM) -->
     <section class="cta" id="join">
       <div class="cta-img">
-        <img src="./assets/moonlit_lake_full.png" alt="Moonlit cherry blossom valley">
+        <img src="./assets/moonlit_lake_full.webp" alt="Moonlit cherry blossom valley" loading="lazy" decoding="async">
       </div>
       <div class="petals" id="petals" aria-hidden="true"></div>
 
@@ -2940,14 +2946,6 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
       const videoPlayPauseText = document.getElementById('videoPlayPauseText');
 
       if (mainDashVideo) {
-        mainDashVideo.play().then(() => {
-          if (videoPlayPauseIcon) videoPlayPauseIcon.textContent = '❚❚';
-          if (videoPlayPauseText) videoPlayPauseText.textContent = 'Pause Reel';
-        }).catch(() => {
-          if (videoPlayPauseIcon) videoPlayPauseIcon.textContent = '▶';
-          if (videoPlayPauseText) videoPlayPauseText.textContent = 'Play Reel';
-        });
-
         if (videoPlayPauseBtn) {
           videoPlayPauseBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -2963,19 +2961,27 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
           });
         }
 
-        // Pause video decoding when scrolled away to eliminate GPU lag
+        // Lazy-load and play video only when approaching viewport to avoid freezing initial page load
         if ('IntersectionObserver' in window) {
+          let videoLoaded = false;
           const videoObs = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
               if (entry.isIntersecting) {
+                if (!videoLoaded) {
+                  videoLoaded = true;
+                  mainDashVideo.preload = 'auto';
+                }
                 if (!videoPlayPauseBtn || videoPlayPauseText.textContent !== 'Play Reel') {
-                  mainDashVideo.play().catch(() => {});
+                  mainDashVideo.play().then(() => {
+                    if (videoPlayPauseIcon) videoPlayPauseIcon.textContent = '❚❚';
+                    if (videoPlayPauseText) videoPlayPauseText.textContent = 'Pause Reel';
+                  }).catch(() => {});
                 }
               } else {
                 mainDashVideo.pause();
               }
             });
-          }, { threshold: 0.05 });
+          }, { rootMargin: '300px 0px', threshold: 0.05 });
           videoObs.observe(mainDashVideo);
         }
       }
@@ -3251,16 +3257,26 @@ result = agent.<span class="c-fn">execute</span>(<span class="c-str">"""
 
       let currentTourIdx = 0;
 
-      // PRELOAD ALL 15 SCREENS (WebP 240KB each = total 3.6MB for all 15 combined)
+      // PRELOAD ALL 15 SCREENS (Deferred to browser idle time so initial hero render is 100% instant)
       const cachedScreens = {};
-      tourItems.forEach(item => {
-        const key = item.dataset.screen;
-        if (key) {
-          const img = new Image();
-          img.src = `./assets/screens/${key}.webp`;
-          cachedScreens[key] = img;
-        }
-      });
+      function preloadTourScreens() {
+        tourItems.forEach((item, idx) => {
+          const key = item.dataset.screen;
+          if (key && !cachedScreens[key]) {
+            setTimeout(() => {
+              const img = new Image();
+              img.src = `./assets/screens/${key}.webp`;
+              cachedScreens[key] = img;
+            }, idx * 60);
+          }
+        });
+      }
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(preloadTourScreens, { timeout: 2500 });
+      } else {
+        window.addEventListener('load', () => setTimeout(preloadTourScreens, 600));
+      }
 
       function activateTourScreen(idx, shouldScrollMobile) {
         if (idx < 0) idx = tourItems.length - 1;
