@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Capture brings your information, projects and AI workflows into one connected environment. Learn how the desktop-first personal workspace operates.">
+  <title>Product — Capture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="shortcut icon" href="./favicon.ico">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="brand">
+        <span class="brand-symbol">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2">
+            <rect x="2" y="2" width="12" height="12" rx="3"></rect>
+            <circle cx="8" cy="8" r="2.5"></circle>
+          </svg>
+        </span>
+        capture
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/product" class="nav-link active">Product</a></li>
+          <li><a href="/spaces" class="nav-link">Spaces</a></li>
+          <li><a href="/agent" class="nav-link">Agent</a></li>
+          <li><a href="/integrations" class="nav-link">Integrations</a></li>
+          <li><a href="/pricing" class="nav-link">Pricing</a></li>
+          <li><a href="/changelog" class="nav-link">Changelog</a></li>
+          <li><a href="/download" class="nav-link">Download</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#signin" data-open-modal="early-access" class="btn btn-ghost btn-sm">Sign in</a>
+        <button type="button" class="btn btn-primary btn-sm" data-open-modal="early-access">Get early access</button>
+        <button type="button" class="mobile-menu-btn" aria-label="Toggle mobile menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav">
+      <ul>
+        <li><a href="/product" class="nav-link active">Product</a></li>
+        <li><a href="/spaces" class="nav-link">Spaces</a></li>
+        <li><a href="/agent" class="nav-link">Agent</a></li>
+        <li><a href="/integrations" class="nav-link">Integrations</a></li>
+        <li><a href="/pricing" class="nav-link">Pricing</a></li>
+        <li><a href="/changelog" class="nav-link">Changelog</a></li>
+        <li><a href="/download" class="nav-link">Download</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button type="button" class="btn btn-primary" style="width: 100%;" data-open-modal="early-access">Get early access</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="section section--sm">
+      <div class="container">
+        <div class="section-header" style="max-width: 760px;">
+          <div class="section-eyebrow">Product Overview</div>
+          <h1 class="section-title">A workspace built around your context.</h1>
+          <p class="section-desc">
+            Capture brings your information, projects and AI workflows into one connected environment. Designed from the ground up for how knowledge workers actually gather and utilize data.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Architecture -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-md); margin-bottom: 80px;">
+          <img src="./assets/screens/inbox_automations.webp" alt="Capture Inbox and Automations Overview" style="border-radius: var(--radius-md); border: 1px solid var(--border);">
+        </div>
+
+        <!-- 8 Core Capabilities -->
+        <div class="grid-2" style="gap: 36px; margin-bottom: 96px;">
+          <div class="card">
+            <span class="badge badge--accent" style="margin-bottom: 12px;">01</span>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">What Capture is</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+              A personal context workspace that bridges the gap between chaotic multi-source capture (web links, PDFs, screenshots, thoughts) and AI reasoning. It preserves the original files while indexing semantic relationships.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="badge badge--accent" style="margin-bottom: 12px;">02</span>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">The Personal Inbox</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+              A zero-friction landing pad for anything you encounter throughout the day. Hit a global shortcut to capture without having to categorize or decide on a folder structure in the moment.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="badge badge--accent" style="margin-bottom: 12px;">03</span>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Structured Spaces</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+              Dedicated project environments where documents, research notes, screenshots, and references live together. Spaces provide the exact boundaries within which AI reasoning operates.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="badge badge--accent" style="margin-bottom: 12px;">04</span>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">The Space Agent</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+              An embedded intelligence that acts as an analytical collaborator. It arranges files into coherent themes, detects discrepancies across documents, and crafts drafts grounded in your sources.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="badge badge--accent" style="margin-bottom: 12px;">05</span>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Search and Retrieval</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+              Deep semantic retrieval that searches across full-text documents, image OCR transcripts, code fragments, and web bookmarks with millisecond latency.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="badge badge--accent" style="margin-bottom: 12px;">06</span>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Agent Action History &amp; Undo</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+              AI should never be an uncontrollable black box. Every file grouping, summary, or structural modification created by the agent is logged in a linear history and can be reversed with one click.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="badge badge--accent" style="margin-bottom: 12px;">07</span>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">External AI Access (MCP)</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+              Expose permitted Space context to Claude Desktop, Cursor, ChatGPT, and custom agents using standard Model Context Protocol connectors.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="badge badge--accent" style="margin-bottom: 12px;">08</span>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Desktop &amp; Web Companion</h3>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6;">
+              Built natively for macOS to support system-wide keystrokes and local caching, complemented by a fast companion web app for reviewing Spaces on the go.
+            </p>
+          </div>
+        </div>
+
+        <!-- Section: Feature Comparison Table -->
+        <div style="margin-bottom: 96px;">
+          <div class="section-header">
+            <div class="section-eyebrow">Comparison</div>
+            <h2 class="section-title">A fundamentally different paradigm</h2>
+            <p class="section-desc">See how Capture replaces fragmented workflows with cohesive context.</p>
+          </div>
+
+          <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Traditional Workflow</th>
+                  <th>Capture</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Save files into scattered folders across your computer</td>
+                  <td>Capture into one Inbox with a single keystroke</td>
+                </tr>
+                <tr>
+                  <td>Manually organize documents and maintain rigid hierarchies</td>
+                  <td>Drag into project Spaces; agent suggests logical groups</td>
+                </tr>
+                <tr>
+                  <td>Upload documents repeatedly into AI chat interfaces</td>
+                  <td>Persistent Space context ready whenever you open an agent</td>
+                </tr>
+                <tr>
+                  <td>Ask AI questions without full project context or background</td>
+                  <td>Ask questions grounded directly in actual Space files</td>
+                </tr>
+                <tr>
+                  <td>Manually compare files to spot errors and outdated specs</td>
+                  <td>Agent flags potential conflicts across documents automatically</td>
+                </tr>
+                <tr>
+                  <td>Copy and paste answers between disconnected applications</td>
+                  <td>Generate living artifacts, roadmaps and summaries inside the Space</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 60px 24px;">
+          <h2 style="font-size: 28px; font-weight: 500; margin-bottom: 12px;">Ready to work with unified context?</h2>
+          <p style="color: var(--text-secondary); max-width: 480px; margin: 0 auto 24px;">Join the private beta and see how Capture transforms your workflow.</p>
+          <button type="button" class="btn btn-primary btn-lg" data-open-modal="early-access">Request early access</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <a href="/" class="brand" style="margin-bottom: 12px;">
+            <span class="brand-symbol">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="12" height="12" rx="3"></rect><circle cx="8" cy="8" r="2.5"></circle></svg>
+            </span>
+            capture
+          </a>
+          <p>A personal workspace for information and AI. Designed for individual builders, developers, researchers and knowledge workers.</p>
+          <div class="footer-studio-badge">Built by Quiet Studio</div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Product</div>
+          <ul class="footer-links">
+            <li><a href="/product">Overview</a></li>
+            <li><a href="/spaces">Structured Spaces</a></li>
+            <li><a href="/agent">Context Agent</a></li>
+            <li><a href="/integrations">MCP Integrations</a></li>
+            <li><a href="/download">Download macOS</a></li>
+            <li><a href="/pricing">Pricing (Beta)</a></li>
+            <li><a href="/changelog">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Trust &amp; Legal</div>
+          <ul class="footer-links">
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/contact">Support &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Quiet Studio</div>
+          <ul class="footer-links">
+            <li><a href="/about">Philosophy &amp; Team</a></li>
+            <li><a href="https://captureqs.space">Website: captureqs.space</a></li>
+            <li><a href="/contact">Contact Quiet Studio</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Quiet Studio. All rights reserved.</div>
+        <div style="display: flex; gap: 18px;">
+          <span>Desktop-first</span>
+          <span>·</span>
+          <span>Model Context Protocol</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="earlyAccessModal" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <button type="button" class="modal-close" data-close-modal>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="section-eyebrow" style="margin-bottom: 12px;">Private Beta</div>
+      <h3 class="modal-title">Get early access to Capture</h3>
+      <p class="modal-desc">We're building a better way to work with information and AI. Join the private beta.</p>
+      <form id="earlyAccessForm">
+        <div class="form-group">
+          <label class="form-label" for="ea_email">Email address</label>
+          <input class="form-input" type="email" id="ea_email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="ea_role">What best describes you?</label>
+          <select class="form-select" id="ea_role" name="role">
+            <option value="builder_developer">Builder / Developer</option>
+            <option value="researcher">Researcher</option>
+            <option value="knowledge_worker">Knowledge Worker</option>
+            <option value="founder">Founder / Executive</option>
+            <option value="designer">Designer / Creator</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="ea_usecase">What would you primarily use Capture for?</label>
+          <select class="form-select" id="ea_usecase" name="useCase">
+            <option value="research_projects">Managing research and project information</option>
+            <option value="codebase_docs">Codebase and technical documentation context</option>
+            <option value="writing_synthesis">Long-form writing &amp; research synthesis</option>
+            <option value="mcp_ai_workflows">Multi-client AI workflows via MCP</option>
+            <option value="general_capture">Personal knowledge capture &amp; recall</option>
+          </select>
+        </div>
+        <label class="form-checkbox-row">
+          <input type="checkbox" id="ea_consent" required checked>
+          <span>I agree to receive early access updates and beta invitations. You can unsubscribe anytime.</span>
+        </label>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Request early access</button>
+        <div class="form-status"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./assets/site.js"></script>
+</body>
+</html>
+

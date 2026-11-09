@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Capture uses the open Model Context Protocol (MCP) to make permitted Space information available to external AI clients like Claude and Cursor.">
+  <title>Integrations &amp; MCP — Capture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="shortcut icon" href="./favicon.ico">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="brand">
+        <span class="brand-symbol">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="12" height="12" rx="3"></rect><circle cx="8" cy="8" r="2.5"></circle></svg>
+        </span>
+        capture
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/product" class="nav-link">Product</a></li>
+          <li><a href="/spaces" class="nav-link">Spaces</a></li>
+          <li><a href="/agent" class="nav-link">Agent</a></li>
+          <li><a href="/integrations" class="nav-link active">Integrations</a></li>
+          <li><a href="/pricing" class="nav-link">Pricing</a></li>
+          <li><a href="/changelog" class="nav-link">Changelog</a></li>
+          <li><a href="/download" class="nav-link">Download</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#signin" data-open-modal="early-access" class="btn btn-ghost btn-sm">Sign in</a>
+        <button type="button" class="btn btn-primary btn-sm" data-open-modal="early-access">Get early access</button>
+        <button type="button" class="mobile-menu-btn" aria-label="Toggle mobile menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav">
+      <ul>
+        <li><a href="/product" class="nav-link">Product</a></li>
+        <li><a href="/spaces" class="nav-link">Spaces</a></li>
+        <li><a href="/agent" class="nav-link">Agent</a></li>
+        <li><a href="/integrations" class="nav-link active">Integrations</a></li>
+        <li><a href="/pricing" class="nav-link">Pricing</a></li>
+        <li><a href="/changelog" class="nav-link">Changelog</a></li>
+        <li><a href="/download" class="nav-link">Download</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button type="button" class="btn btn-primary" style="width: 100%;" data-open-modal="early-access">Get early access</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="section section--sm">
+      <div class="container">
+        <div class="section-header" style="max-width: 780px;">
+          <div class="section-eyebrow">Ecosystem &amp; MCP</div>
+          <h1 class="section-title">Your context. Beyond Capture.</h1>
+          <p class="section-desc">
+            Your information should be accessible from the tools you already work with. Capture uses the Model Context Protocol (MCP) to make permitted Space information safely accessible without data fragmentation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+
+        <!-- Category 1: AI Clients -->
+        <div style="margin-bottom: 72px;">
+          <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 8px;">AI Clients</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 28px;">Connect external AI applications directly to your Capture context layer.</p>
+
+          <div class="grid-2">
+            <!-- Claude Desktop -->
+            <div class="card">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div>
+                  <h3 style="font-size: 19px; font-weight: 600;">Claude Desktop</h3>
+                  <span style="font-size: 12px; color: var(--text-secondary);">Anthropic AI Client</span>
+                </div>
+                <span class="badge badge--accent">Available</span>
+              </div>
+              <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;">
+                Read and search permitted Spaces directly from Claude conversations using local stdio MCP transport.
+              </p>
+              <div style="background: var(--surface-subtle); padding: 12px; border-radius: var(--radius-sm); font-size: 12px; font-family: var(--font-mono); margin-bottom: 14px; overflow-x: auto;">
+                <code>"capture": { "command": "capture", "args": ["mcp", "--serve"] }</code>
+              </div>
+              <div style="font-size: 13px; color: var(--accent); font-weight: 500;">
+                Setup: Add block to ~/Library/Application Support/Claude/claude_desktop_config.json
+              </div>
+            </div>
+
+            <!-- Cursor -->
+            <div class="card">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div>
+                  <h3 style="font-size: 19px; font-weight: 600;">Cursor IDE</h3>
+                  <span style="font-size: 12px; color: var(--text-secondary);">AI Code Editor</span>
+                </div>
+                <span class="badge badge--accent">Available</span>
+              </div>
+              <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;">
+                Expose project documentation, PRDs, and architecture specs to Cursor Composer without bloating your code repository.
+              </p>
+              <div style="background: var(--surface-subtle); padding: 12px; border-radius: var(--radius-sm); font-size: 12px; font-family: var(--font-mono); margin-bottom: 14px; overflow-x: auto;">
+                <code>Type: command | Command: capture mcp</code>
+              </div>
+              <div style="font-size: 13px; color: var(--accent); font-weight: 500;">
+                Setup: Enable in Cursor Settings &gt; Features &gt; MCP Servers
+              </div>
+            </div>
+
+            <!-- ChatGPT -->
+            <div class="card">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div>
+                  <h3 style="font-size: 19px; font-weight: 600;">ChatGPT</h3>
+                  <span style="font-size: 12px; color: var(--text-secondary);">OpenAI Assistant</span>
+                </div>
+                <span class="badge">Beta</span>
+              </div>
+              <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;">
+                Query permitted Space indexes via secure local relay webhooks and custom GPT tool endpoints.
+              </p>
+              <div style="font-size: 13px; color: var(--text-secondary);">
+                Status: In private beta testing. Invitation granted upon beta enrollment.
+              </div>
+            </div>
+
+            <!-- Generic MCP -->
+            <div class="card">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div>
+                  <h3 style="font-size: 19px; font-weight: 600;">Open MCP Harnesses</h3>
+                  <span style="font-size: 12px; color: var(--text-secondary);">Custom Agents &amp; Python SDK</span>
+                </div>
+                <span class="badge badge--accent">Available</span>
+              </div>
+              <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;">
+                Full compatibility with open Model Context Protocol clients. Build custom scripts, terminal tools, or automated workflows.
+              </p>
+              <div style="font-size: 13px; color: var(--accent); font-weight: 500;">
+                Protocol: Standard JSON-RPC 2.0 via Stdio &amp; SSE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Capture Sources -->
+        <div style="margin-bottom: 72px;">
+          <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 8px;">Capture Sources</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 28px;">Native ingestion pipelines built into the desktop client.</p>
+
+          <div class="grid-4">
+            <div class="card card--subtle">
+              <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 6px;">Global Clipboard</h4>
+              <span class="badge badge--accent" style="margin-bottom: 10px;">Available</span>
+              <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+                Captures formatted HTML, plain text, and code snippets with automatic source URL preservation.
+              </p>
+            </div>
+
+            <div class="card card--subtle">
+              <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 6px;">Local Files</h4>
+              <span class="badge badge--accent" style="margin-bottom: 10px;">Available</span>
+              <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+                Drag PDFs, Markdown notes, text files, JSON payloads, and audio transcriptions from Finder.
+              </p>
+            </div>
+
+            <div class="card card--subtle">
+              <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 6px;">Screen Snipping</h4>
+              <span class="badge badge--accent" style="margin-bottom: 10px;">Available</span>
+              <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+                Dedicated macOS selection tool that snaps visuals and runs local OCR for instant searchability.
+              </p>
+            </div>
+
+            <div class="card card--subtle">
+              <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 6px;">Web Links</h4>
+              <span class="badge badge--accent" style="margin-bottom: 10px;">Available</span>
+              <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+                Pulls full reader-mode clean text from articles and documentation without ads or scripts.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: Infrastructure -->
+        <div style="margin-bottom: 80px;">
+          <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 8px;">Infrastructure &amp; Protocol</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 28px;">Transparent protocols ensuring zero lock-in.</p>
+
+          <div class="grid-3">
+            <div class="card">
+              <h4 style="font-size: 17px; font-weight: 600; margin-bottom: 6px;">Model Context Protocol (MCP)</h4>
+              <span class="badge badge--accent" style="margin-bottom: 12px;">Standard Core</span>
+              <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">
+                Capture is natively designed around the open MCP specification, treating Spaces as first-class context resources.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4 style="font-size: 17px; font-weight: 600; margin-bottom: 6px;">Local REST API</h4>
+              <span class="badge" style="margin-bottom: 12px;">Beta</span>
+              <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">
+                Local-only HTTP daemon running on localhost with Bearer token authentication for custom shell scripts and Alfred / Raycast extensions.
+              </p>
+            </div>
+
+            <div class="card">
+              <h4 style="font-size: 17px; font-weight: 600; margin-bottom: 6px;">Cloud App Connectors</h4>
+              <span class="badge" style="margin-bottom: 12px;">Planned</span>
+              <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">
+                Future connectors for Linear, GitHub Issues, and Google Drive will be released based on beta participant feedback.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 60px 24px;">
+          <h2 style="font-size: 28px; font-weight: 500; margin-bottom: 12px;">Plug Capture into your AI stack</h2>
+          <p style="color: var(--text-secondary); max-width: 480px; margin: 0 auto 24px;">Join the private beta to start using the MCP server with Claude and Cursor.</p>
+          <button type="button" class="btn btn-primary btn-lg" data-open-modal="early-access">Request early access</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <a href="/" class="brand" style="margin-bottom: 12px;">
+            <span class="brand-symbol">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="12" height="12" rx="3"></rect><circle cx="8" cy="8" r="2.5"></circle></svg>
+            </span>
+            capture
+          </a>
+          <p>A personal workspace for information and AI. Designed for individual builders, developers, researchers and knowledge workers.</p>
+          <div class="footer-studio-badge">Built by Quiet Studio</div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Product</div>
+          <ul class="footer-links">
+            <li><a href="/product">Overview</a></li>
+            <li><a href="/spaces">Structured Spaces</a></li>
+            <li><a href="/agent">Context Agent</a></li>
+            <li><a href="/integrations">MCP Integrations</a></li>
+            <li><a href="/download">Download macOS</a></li>
+            <li><a href="/pricing">Pricing (Beta)</a></li>
+            <li><a href="/changelog">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Trust &amp; Legal</div>
+          <ul class="footer-links">
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/contact">Support &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Quiet Studio</div>
+          <ul class="footer-links">
+            <li><a href="/about">Philosophy &amp; Team</a></li>
+            <li><a href="https://captureqs.space">Website: captureqs.space</a></li>
+            <li><a href="/contact">Contact Quiet Studio</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Quiet Studio. All rights reserved.</div>
+        <div style="display: flex; gap: 18px;">
+          <span>Desktop-first</span>
+          <span>·</span>
+          <span>Model Context Protocol</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="earlyAccessModal" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <button type="button" class="modal-close" data-close-modal>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="section-eyebrow" style="margin-bottom: 12px;">Private Beta</div>
+      <h3 class="modal-title">Get early access to Capture</h3>
+      <p class="modal-desc">We're building a better way to work with information and AI. Join the private beta.</p>
+      <form id="earlyAccessForm">
+        <div class="form-group">
+          <label class="form-label" for="ea_email">Email address</label>
+          <input class="form-input" type="email" id="ea_email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="ea_role">What best describes you?</label>
+          <select class="form-select" id="ea_role" name="role">
+            <option value="builder_developer">Builder / Developer</option>
+            <option value="researcher">Researcher</option>
+            <option value="knowledge_worker">Knowledge Worker</option>
+            <option value="founder">Founder / Executive</option>
+            <option value="designer">Designer / Creator</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="ea_usecase">What would you primarily use Capture for?</label>
+          <select class="form-select" id="ea_usecase" name="useCase">
+            <option value="research_projects">Managing research and project information</option>
+            <option value="codebase_docs">Codebase and technical documentation context</option>
+            <option value="writing_synthesis">Long-form writing &amp; research synthesis</option>
+            <option value="mcp_ai_workflows">Multi-client AI workflows via MCP</option>
+            <option value="general_capture">Personal knowledge capture &amp; recall</option>
+          </select>
+        </div>
+        <label class="form-checkbox-row">
+          <input type="checkbox" id="ea_consent" required checked>
+          <span>I agree to receive early access updates and beta invitations. You can unsubscribe anytime.</span>
+        </label>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Request early access</button>
+        <div class="form-status"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./assets/site.js"></script>
+</body>
+</html>
+
