@@ -3,14 +3,125 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Capture pricing and access terms. Free during the private beta for individual builders, developers, and researchers.">
-  <title>Pricing &amp; Access — Capture</title>
+  <meta name="description" content="Capture pricing tiers. Personal, Pro, and Enterprise plans tailored for builders, power knowledge workers, and organizations.">
+  <title>Pricing &amp; Plans — Capture</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/theme.css">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="shortcut icon" href="./favicon.ico">
+  <style>
+    .billing-toggle-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 5px;
+      background: #eff5e4;
+      border-radius: 999px;
+      margin-top: 18px;
+      border: 1px solid #d9dfcc;
+    }
+    .billing-toggle-btn {
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      color: #556045;
+      transition: all 0.2s ease;
+    }
+    .billing-toggle-btn.active {
+      background: #ffffff;
+      color: var(--olive);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 50px;
+      margin-bottom: 80px;
+      align-items: stretch;
+    }
+    @media (max-width: 960px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    .pricing-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .pricing-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(35, 55, 15, 0.08);
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--olive);
+      box-shadow: 0 8px 24px rgba(77, 106, 16, 0.12);
+    }
+    .pricing-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--olive);
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 12px;
+      border-radius: 999px;
+    }
+    .price-amount {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      line-height: 1;
+      margin: 16px 0 6px;
+    }
+    .price-period {
+      font-size: 13px;
+      color: #7a8668;
+      font-weight: 500;
+    }
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 28px 0 36px;
+      flex: 1;
+      font-size: 14.5px;
+      color: var(--ink);
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.45;
+    }
+    .pricing-features svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  </style>
 </head>
 <body>
 
@@ -51,99 +162,163 @@
     <!-- Hero -->
     <header class="subpage-hero">
       <div class="container" style="max-width: 820px;">
-        <span class="pill">Access &amp; Pricing</span>
-        <h1 class="h2" style="margin-bottom: 16px;">Transparent access. Free during private beta.</h1>
+        <span class="pill">Plans &amp; Access</span>
+        <h1 class="h2" style="margin-bottom: 14px;">Simple, transparent pricing.</h1>
         <p class="lead">
-          We are validating actual usage, infrastructure costs, and token economics alongside our early cohort. All core capabilities are free during private beta.
+          Choose the tier that fits how you work with information and AI. All plans include full desktop quick capture and Model Context Protocol support.
         </p>
+
+        <!-- Monthly / Annual Toggle -->
+        <div class="billing-toggle-wrap">
+          <button type="button" class="billing-toggle-btn active" id="btnMonthly">Monthly</button>
+          <button type="button" class="billing-toggle-btn" id="btnAnnual">Annual (Save 20%)</button>
+        </div>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container" style="padding-top: 60px; padding-bottom: 96px;">
-      <!-- Active Beta Card -->
-      <div style="max-width: 640px; margin: 0 auto 80px;">
-        <div class="card" style="border: 2px solid var(--olive); background: #ffffff;">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-            <div>
-              <span class="pill" style="margin-bottom: 8px;">Private Beta Tier</span>
-              <h2 style="font-size: 26px; font-weight: 600;">Capture Beta</h2>
-              <div style="font-size: 14px; color: #7a8668;">Full desktop &amp; agent capabilities</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 36px; font-weight: 700; color: var(--ink);">$0</div>
-              <div style="font-size: 13px; color: var(--olive); font-weight: 600;">During Private Beta</div>
-            </div>
-          </div>
+    <!-- 3 Pricing Tiers: Personal, Pro, Enterprise -->
+    <main class="container">
+      <div class="pricing-grid">
+        
+        <!-- TIER 1: PERSONAL -->
+        <div class="pricing-card">
+          <span class="pill" style="align-self: flex-start; margin-bottom: 8px;">Personal</span>
+          <h3 style="font-size: 22px; font-weight: 600;">Personal</h3>
+          <p style="font-size: 13.5px; color: #556045; margin-top: 4px; min-height: 40px;">
+            For individual builders, researchers, and thinkers organizing personal projects.
+          </p>
 
-          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; font-size: 15px; color: var(--ink);">
-            <li style="display: flex; align-items: center; gap: 10px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              macOS Native Desktop Application
+          <div class="price-amount" id="pricePersonal">$0</div>
+          <div class="price-period" id="periodPersonal">Free during private beta</div>
+
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>1 Unified Personal Inbox</strong></span>
             </li>
-            <li style="display: flex; align-items: center; gap: 10px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Personal Inbox with global shortcut (<kbd style="font-family:var(--font-mono); font-size:11px; background:#f4f7ee; padding:2px 4px; border:1px solid #d9dfcc; border-radius:3px;">⌥ Space</kbd>)
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Up to 5 Structured Spaces</strong></span>
             </li>
-            <li style="display: flex; align-items: center; gap: 10px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Unlimited Structured Spaces
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Native macOS Quick Capture (<kbd style="font-family:var(--font-mono);font-size:11px;background:#f4f7ee;padding:1px 4px;border:1px solid #d9dfcc;border-radius:3px;">⌥ Space</kbd>)</span>
             </li>
-            <li style="display: flex; align-items: center; gap: 10px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Core Space Agent (Arrange, Understand, Create)
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Core Space Agent (Arrange &amp; Summarize)</span>
             </li>
-            <li style="display: flex; align-items: center; gap: 10px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Full semantic and lexical search
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Local-first storage &amp; offline indexing</span>
             </li>
-            <li style="display: flex; align-items: center; gap: 10px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Model Context Protocol (MCP) access for Claude &amp; Cursor
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Standard Model Context Protocol (stdio)</span>
             </li>
           </ul>
 
-          <a href="/#join" class="btn btn-lg" style="width: 100%; text-align: center;">Join the waitlist →</a>
-          <p style="font-size: 12px; color: #7a8668; text-align: center; margin-top: 14px;">
-            Final usage limits and commercial pricing will be communicated well before any paid transition.
-          </p>
+          <a href="/#join" class="btn btn-secondary btn-lg" style="width: 100%; text-align: center;">Get Started Free →</a>
         </div>
+
+        <!-- TIER 2: PRO (FEATURED) -->
+        <div class="pricing-card featured">
+          <span class="pill" style="align-self: flex-start; margin-bottom: 8px; background: #e7efcf; color: var(--olive);">Pro</span>
+          <h3 style="font-size: 22px; font-weight: 600;">Pro</h3>
+          <p style="font-size: 13.5px; color: #556045; margin-top: 4px; min-height: 40px;">
+            For active developers, technical writers, and power knowledge workers.
+          </p>
+
+          <div class="price-amount" id="pricePro">$20</div>
+          <div class="price-period" id="periodPro">per user / month (billed monthly)</div>
+
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Unlimited Structured Spaces</strong></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Advanced Context Agent</strong> (Contradiction detection &amp; deep synthesis)</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Full MCP Bridges for <strong>Claude Desktop &amp; Cursor</strong></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Encrypted cloud synchronization across devices</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Reversible action audit log with instant undo</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>High-capacity token processing &amp; priority API queues</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Zero model training guarantee on all files</span>
+            </li>
+          </ul>
+
+          <a href="/#join" class="btn btn-lg" style="width: 100%; text-align: center;">Start Pro Trial →</a>
+        </div>
+
+        <!-- TIER 3: ENTERPRISE -->
+        <div class="pricing-card">
+          <span class="pill" style="align-self: flex-start; margin-bottom: 8px;">Enterprise</span>
+          <h3 style="font-size: 22px; font-weight: 600;">Enterprise</h3>
+          <p style="font-size: 13.5px; color: #556045; margin-top: 4px; min-height: 40px;">
+            For engineering organizations, research laboratories, and agent teams.
+          </p>
+
+          <div class="price-amount" id="priceEnterprise">Custom</div>
+          <div class="price-period" id="periodEnterprise">annual contract with dedicated SLA</div>
+
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Shared Collaborative Spaces</strong> with RBAC permissions</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Bring Your Own Key (BYOK)</strong> or self-hosted LLM endpoints</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Custom Enterprise MCP Integrations (Jira, Linear, GitHub, Slack)</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Dedicated VPC deployment or private on-premise daemon</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>SOC 2 Type II compliance &amp; centralized audit logs</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>99.99% Uptime SLA &amp; dedicated solutions architect</span>
+            </li>
+          </ul>
+
+          <a href="/contact" class="btn btn-secondary btn-lg" style="width: 100%; text-align: center;">Contact Enterprise Sales →</a>
+        </div>
+
       </div>
 
-      <!-- Future Pricing Hypothesis -->
-      <div style="margin-bottom: 80px;" id="future">
-        <div style="text-align: center; margin-bottom: 40px;">
-          <span class="pill">Future Roadmap</span>
-          <h2 class="h2">Our pricing philosophy</h2>
-          <p style="color: #616956; font-size: 16px; margin-top: 10px;">
-            We do not publish artificial prices before actual model usage costs are validated. Below is the working hypothesis:
-          </p>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-          <div class="card card-subtle">
-            <h3 style="font-size: 19px; font-weight: 600; margin-bottom: 4px;">Free</h3>
-            <div style="font-size: 13px; color: var(--olive); font-weight: 600; margin-bottom: 12px;">Personal users</div>
-            <p style="font-size: 14.5px; color: #556045; line-height: 1.6;">
-              Intended for individual knowledge storage, standard captures, and personal Spaces with local indexing and essential agent capabilities.
-            </p>
-          </div>
-
-          <div class="card card-subtle">
-            <h3 style="font-size: 19px; font-weight: 600; margin-bottom: 4px;">Pro</h3>
-            <div style="font-size: 13px; color: var(--olive); font-weight: 600; margin-bottom: 12px;">Individual builders &amp; developers</div>
-            <p style="font-size: 14.5px; color: #556045; line-height: 1.6;">
-              Higher AI reasoning capacity, expanded context window processing, full MCP bridges to Claude &amp; Cursor, and automated contradiction checks.
-            </p>
-          </div>
-
-          <div class="card card-subtle">
-            <h3 style="font-size: 19px; font-weight: 600; margin-bottom: 4px;">Power</h3>
-            <div style="font-size: 13px; color: var(--olive); font-weight: 600; margin-bottom: 12px;">Heavy researchers &amp; knowledge workers</div>
-            <p style="font-size: 14.5px; color: #556045; line-height: 1.6;">
-              Advanced long-term memory synthesis, multi-Space cross-referencing, self-hosted LLM endpoints, and prioritized processing queues.
-            </p>
-          </div>
+      <!-- FAQ Teaser -->
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 48px 36px; text-align: center; margin-bottom: 80px;">
+        <span class="pill">Pricing Inquiries</span>
+        <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 10px;">Questions about our plans?</h3>
+        <p style="color: #556045; max-width: 540px; margin: 0 auto 24px; font-size: 15px;">
+          During the private beta, Capture is free for individual builders. Have specific deployment requirements or team use cases?
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <a href="/contact" class="btn">Talk with Quiet Studio</a>
+          <a href="/security" class="btn btn-secondary">Review Security Specs</a>
         </div>
       </div>
     </main>
@@ -186,7 +361,7 @@
       <div class="footer-col">
         <h5>Access &amp; Plans</h5>
         <ul>
-          <li><a href="/pricing">Beta Pricing ($0)</a></li>
+          <li><a href="/pricing">Plans (Personal, Pro, Enterprise)</a></li>
           <li><a href="/download">macOS DMG Release</a></li>
           <li><a href="/status">System Status</a></li>
         </ul>
@@ -215,12 +390,35 @@
   </footer>
 
   <script>
+    // Mobile Drawer
     const toggle = document.getElementById('mobileNavToggle');
     const drawer = document.getElementById('mobileNavDrawer');
     if (toggle && drawer) {
       toggle.addEventListener('click', () => {
         toggle.classList.toggle('open');
         drawer.classList.toggle('open');
+      });
+    }
+
+    // Monthly / Annual Pricing Toggle
+    const btnMonthly = document.getElementById('btnMonthly');
+    const btnAnnual = document.getElementById('btnAnnual');
+    const pricePro = document.getElementById('pricePro');
+    const periodPro = document.getElementById('periodPro');
+
+    if (btnMonthly && btnAnnual && pricePro && periodPro) {
+      btnMonthly.addEventListener('click', () => {
+        btnMonthly.classList.add('active');
+        btnAnnual.classList.remove('active');
+        pricePro.textContent = '$20';
+        periodPro.textContent = 'per user / month (billed monthly)';
+      });
+
+      btnAnnual.addEventListener('click', () => {
+        btnAnnual.classList.add('active');
+        btnMonthly.classList.remove('active');
+        pricePro.textContent = '$16';
+        periodPro.textContent = 'per user / month (billed annually, $192/yr)';
       });
     }
   </script>
